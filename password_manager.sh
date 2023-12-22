@@ -5,7 +5,20 @@ function selection(){
 	read action;
 }
 
+function get_password (){	
+	echo 'サービス名を入力してください：'
+	read service_input
+## サービス名が保存されていなかった場合
+	if [[ $service_input != $service ]]; then
+		echo 'そのサービスは登録されていません。'
+## サービス名が保存されていた場合
+	else
+		echo サービス名：$service
+		echo ユーザー名：$user
+		echo パスワード名：$password
 
+	fi
+}
 echo 'パスワードマネージャーへようこそ！'
 
 while true
@@ -20,18 +33,6 @@ do
 # GetPassword が入力された場合
 	elif [[ $action = 'Get Password' ]]; then
 		gpg2 --yes -r jagaimo -o password.txt -d password.txt.gpg
-		echo 'サービス名を入力してください：'
-		read service_input
-## サービス名が保存されていなかった場合
-			if [[ $service_input != $service ]]; then
-			echo 'そのサービスは登録されていません。'
-## サービス名が保存されていた場合
-		else
-			echo サービス名：$service
-			echo ユーザー名：$user
-			echo パスワード名：$password
-	
-			fi
 		continue
 # Exit が入力された場合
 	elif [[ $action = 'Exit' ]]; then 
