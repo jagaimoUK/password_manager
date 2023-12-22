@@ -33,6 +33,7 @@ do
 # GetPassword が入力された場合
 	elif [[ $action = 'Get Password' ]]; then
 		gpg2 --yes -r jagaimo -o password.txt -d password.txt.gpg
+		get_password 
 		continue
 # Exit が入力された場合
 	elif [[ $action = 'Exit' ]]; then 
